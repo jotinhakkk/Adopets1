@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="Images/Adopt 500x500.png" type="image/x-icon" />
+   <link rel="stylesheet" href="css/home.css">
+  <title>Meus Anúncios</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      
+      
+      
+      
+      
+      align-items: center;
+    }
+    .catalogo {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 20px;
+     
+      width: 100%;
+      left: 600px;
+    }
+    .card {
+      position: relative;
+      background-color: #324a7a;
+      color: #dbe3f0;
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .card img.animal-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 5px;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+    .actions {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .actions button {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 8px;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      color: white;
+      transition: background-color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .actions button:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+   
+  </style>
+</head>
+<body>
+ <header class="cabecalho">
+        <div class="container-cabecalho">
+            <div class="logo">
+                <img class="img-cabecalho" src="Images/Adopt 500x500.png" alt="Logo AdoPetz">
+                <h2 class="texto-logo">AdoPetz</h2>
+            </div>
+
+            <nav class="menu-nav">
+  <ul class="lista-menu-nav">
+    <li class="item-menu-nav"><a href="homelogada.html">Início</a></li>
+    <li class="item-menu-nav"><a href="catalogo.html">Adote</a></li>
+
+    <li class="item-menu-nav dropdown">
+      <a href="#" class="dropbtn">Recursos</a>
+      <ul class="dropdown-content">
+        <li><a href="calendario.html">Calendário</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="denuncia.html">Denuncie</a></li>
+      </ul>
+    </li>
+
+    <li class="item-menu-nav dropdown">
+      <a href="#" class="dropbtn">Parceiro</a>
+      <ul class="dropdown-content">
+        <li><a href="itens.html">Loja</a></li>
+        <li><a href="mapa.html">Mapa</a></li>
+      </ul>
+    </li>
+
+    <li class="item-menu-nav dropdown">
+      <a href="#" class="dropbtn">Institucional</a>
+      <ul class="dropdown-content">
+        <li><a href="sobre-nos.html">Sobre Nós</a></li>
+        <li><a href="contribua.html">Contribua Conosco</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+            <div class="perfil-usuario" id="perfil-usuario">
+                <img class="foto-usuario" src="Images/meuamor.jpg" alt="Foto do Usuário">
+                <span class="nome-usuario">Karen</span>
+            </div>
+
+            <div class="mini-navbar" id="mini-navbar" style="display: none;">
+                <ul>
+                    <li><a href="perfil.html">Exibir Perfil</a></li>
+                    <li><a href="meus_anuncios.html">Meus Anuncios</a></li>
+                    <li><a href="chats.html">Meus Chats</a></li>
+                    <li><a href="home.html">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+  <div class="catalogo" id="catalogo"></div>
+<div id="mensagem-vazia" style="display:none; text-align:center; margin-top: 50px;">
+  <p style="color:#ccc; font-size: 18px;">Você ainda não tem anúncios cadastrados.</p>
+  <a href="cadastro_animal.html" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #1e90ff; color: white; border-radius: 6px; text-decoration: none; font-weight: bold;">
+    Cadastrar Anúncio
+  </a>
+</div>
+
+  <script>
+    // Função para carregar anúncios do localStorage ou criar padrão
+    function carregarAnuncios() {
+      let anuncios = JSON.parse(localStorage.getItem("anuncios")) || [];
+
+      if (anuncios.length === 0) {
+        anuncios = [
+          {
+            id: "1",
+            nome: "Beto – O Aventureiro de Quatro Patas",
+            descricao: "Beto é um vira-lata caramelo de 2 anos, cheio de energia e amor pra dar. Ama passear, correr no parque e brincar com bolinhas. Ideal para famílias ativas ou alguém que curta um bom companheiro para caminhadas. Castrado, vacinado e pronto para amar!",
+            raca: "Vira-lata",
+            data_nascimento: "2023-05-10",
+            coloracao: "Caramelo",
+            vacinado: "Não",
+            tipo: "Cachorro",
+            idade: 2,
+            imagem: "Images/cachorro1.png",
+            localidade:"RJ"
+          },
+          {
+            id: "2",
+            nome: "Bob – O Bulldog Carinhoso",
+            descricao: "Descrição: Bob é um bulldog inglês de 3 anos com aquele jeitão ranzinza de aparência, mas um coração mole que derrete qualquer um. Ama cochilar no sofá, receber carinho na barriga e fazer companhia em dias preguiçosos. Se dá bem com outros animais e é extremamente dócil com crianças. Castrado, vacinado e prontíssimo para virar o rei do seu lar!",
+            raca: "Buldogue-Ingles",
+            data_nascimento: "2023-02-16",
+            coloracao: "Branco e Preto",
+            vacinado: "Sim",
+            tipo: "Cachorro",
+            idade: 2,
+            imagem: "Images/cachorro2.png",
+            localidade:"SP"
+          },
+          {
+            id: "3",
+            nome: "Tomás – O Rei da Soneca",
+            descricao: "Tomás tem 3 anos e ama uma janela ensolarada. É daqueles gatinhos que ronronam só de você chegar perto. Muito sociável com humanos, mas prefere ser filho único felino. Está castrado, vacinado e é FIV/FeLV negativo.",
+            raca: "Siames",
+            data_nascimento: "2022-03-15",
+            coloracao: "Cinza",
+            vacinado: "Sim",
+            tipo: "Gato",
+            idade: 3,
+            imagem: "Images/gato1.png",
+            localidade:"SP"
+          }
+          ,
+          {
+            id: "4",
+            nome: "Nina – A Exploradora Silenciosa",
+            descricao: "Com apenas 1 ano, Nina é curiosa, elegante e independente. Gosta de cantinhos altos e brinquedos com penas. Perfeita para quem quer um pet com personalidade, mas também com carinho nos momentos certos.",
+            raca: "Siames",
+            data_nascimento: "2024-03-15",
+            coloracao: "Laranja",
+            vacinado: "Sim",
+            tipo: "Gato",
+            idade: 1,
+            imagem: "Images/gato2.png",
+            localidade:"RJ"
+          }
+          ,
+          {
+            id: "5",
+            nome: "Lua – A Encantadora de Nariz Rosa",
+            descricao: " Lua é uma coelhinha de 1 ano, branca com manchinhas cinza, super dócil e sociável. Ama cenourinhas, colo e um espaço para pular livremente. Já está castrada e acostumada com uso de bandeja higiênica.",
+            raca: "Rex",
+            data_nascimento: "2024-03-15",
+            coloracao: "Branca e Cinza",
+            vacinado: "Sim",
+            tipo: "Outros",
+            idade: 1,
+            imagem: "Images/coelho1.png",
+            localidade:"MG"
+          },
+          {
+            id: "6",
+            nome: "Tico – O Saltitante Curioso",
+            descricao: " Tico tem 1 ano e é um coelho macho mini-lop. Adora explorar ambientes, subir em almofadas e interagir com humanos. Muito inteligente e já responde ao nome quando escuta o som do pote de comida.",
+            raca: "Holland Lop",
+            data_nascimento: "2024-03-15",
+            coloracao: "Branco e Marrom",
+            vacinado: "Sim",
+            tipo: "Outros",
+            idade: 1,
+            imagem: "Images/coelho2.png",
+            localidade:"MG"
+          },
+          {
+            id: "7",
+            nome: "Pipoca – Um Grãozinho de Alegria",
+            descricao: " Pequenino e hiperativo, o Pipoca adora escalar, roer e correr na rodinha. Tem 3 meses e já está acostumado a receber petiscos direto da mão. Ótimo para crianças acompanhadas pelos pais e quem quer um amigo de hábitos noturnos",
+            raca: "Sírio",
+            data_nascimento: "2024-03-15",
+            coloracao: "Bege",
+            vacinado: "Sim",
+            tipo: "Outros",
+            idade: 1,
+            imagem: "Images/rato1.png",
+            localidade:"SP"
+          }
+          ,
+          {
+            id: "8",
+            nome: "Bolinha – A Fofura Noturna",
+            descricao: " Bolinha tem 5 meses e é do tipo mais calminho. Gosta de fazer ninhos com papel e tirar longas sonecas durante o dia. Está saudável, come bem e ama esconder petiscos. Ideal para lares tranquilos.",
+            raca: "Sírio",
+            data_nascimento: "2024-03-15",
+            coloracao: "Cinza",
+            vacinado: "Sim",
+            tipo: "Outros",
+            idade: 1,
+            imagem: "Images/rato2.png",
+            localidade:"RJ"
+          }
+        ];
+        localStorage.setItem("anuncios", JSON.stringify(anuncios));
+      }
+      return anuncios;
+    }
+
+    // Função para salvar anúncios no localStorage
+    function salvarAnuncios(anuncios) {
+      localStorage.setItem("anuncios", JSON.stringify(anuncios));
+    }
+
+    // Função para renderizar os cartões de anúncio na tela
+    function renderizarAnuncios() {
+      const catalogo = document.getElementById("catalogo");
+      catalogo.innerHTML = "";
+const mensagemVazia = document.getElementById("mensagem-vazia");
+const anuncios = carregarAnuncios();
+
+if (anuncios.length === 0) {
+  mensagemVazia.style.display = "block";
+  return;
+} else {
+  mensagemVazia.style.display = "none";
+}
+      anuncios.forEach(anuncio => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+          <img src="${anuncio.imagem}" alt="${anuncio.nome}" class="animal-img" />
+          <div>
+            <h2>${anuncio.nome}</h2>
+            <p>Raça: ${anuncio.raca}</p>
+            <p>Idade: ${anuncio.idade}</p>
+            <p>Coloração: ${anuncio.coloracao}</p>
+            <p>Vacinado: ${anuncio.vacinado}</p>
+            <p>Data Nascimento: ${anuncio.data_nascimento}</p>
+          </div>
+          <div class="actions">
+            <button title="Editar" class="btn-editar">✏️</button>
+            <button title="Excluir" class="btn-excluir">🗑️</button>
+          </div>
+        `;
+
+        // Adiciona eventos aos botões
+        const btnEditar = card.querySelector('.btn-editar');
+        btnEditar.addEventListener('click', () => editarAnuncio(anuncio.id));
+
+        const btnExcluir = card.querySelector('.btn-excluir');
+        btnExcluir.addEventListener('click', () => excluirAnuncio(anuncio.id));
+
+        catalogo.appendChild(card);
+      });
+    }
+
+    // Função para editar anúncio
+    function editarAnuncio(id) {
+      const anuncios = carregarAnuncios();
+      const anuncio = anuncios.find(a => a.id === id);
+      if (!anuncio) {
+        alert("Anúncio não encontrado!");
+        return;
+      }
+      localStorage.setItem("animalSelecionado", JSON.stringify(anuncio));
+      window.location.href = "editar_animal.html";
+    }
+
+    // Função para excluir anúncio
+    function excluirAnuncio(id) {
+      if (confirm("Tem certeza que deseja excluir este anúncio?")) {
+        let anuncios = carregarAnuncios();
+        anuncios = anuncios.filter(a => a.id !== id);
+        salvarAnuncios(anuncios);
+        renderizarAnuncios();
+      }
+    }
+
+    // Carrega e renderiza os anúncios ao abrir a página
+    window.onload = () => {
+      renderizarAnuncios();
+    };
+     document.addEventListener("DOMContentLoaded", () => {
+        const perfilUsuario = document.getElementById("perfil-usuario");
+        const miniNavbar = document.getElementById("mini-navbar");
+
+        perfilUsuario.addEventListener("click", (e) => {
+            e.stopPropagation();
+            miniNavbar.style.display = (miniNavbar.style.display === "block") ? "none" : "block";
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!miniNavbar.contains(e.target) && e.target !== perfilUsuario && !perfilUsuario.contains(e.target)) {
+                miniNavbar.style.display = "none";
+            }
+        });
+
+        const linksMiniNavbar = miniNavbar.querySelectorAll("a");
+        linksMiniNavbar.forEach(link => {
+            link.addEventListener("click", () => {
+                miniNavbar.style.display = "none";
+            });
+        }); });
+  </script>
+</body>
+</html>
